@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Name of yur theme -->
+  <title>Linen</title>
+  <!-- Add any styles your theme requires here -->
+  <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300,400italic,300italic,600,600italic,200italic,200' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+  <link rel="stylesheet/less" type="text/css" href="/styles/cycle.less">
+  <link rel="stylesheet/less" type="text/css" href="/styles/main.less">
+  <!-- This script loads the Populr theming engine. Populr will automatically
+       remove it at runtime. -->
+  <script src="http://populr.me/assets/developers/themer.js"></script>
+  <!-- Add any javscript your theme requires here -->
+  <script src="/lib/fancybox/jquery.fancybox.js"></script>
+  <script src="/lib/tooltipsy/tooltipsy.min.js"></script>
+  <script src="/js/main.js"></script>
+</head>
+<body>
+  <!-- Put your theme's inside this script tag. The script tag will
+       prevent issues with quote escaping and invalid markup. -->
+  <script id="theme" type="text/x-handlebars-template">
+    <div id="header">
+      <h1 id="pop-title">the Linen Theme</h1>
+    </div>
+    <div id="header-separator"></div>
+    {{#region "columnizer" id="main-region" max_cols="3" dummy_content="I-3,I-2,I-1|I-2,V-1|I-1|V-1|V-1,V-1|V-1,V-2,V-3|E-2,T-1,T-3|D-1|D-6|D-3,I-1,T-1|T-1,I-4|T-1"}}
+
+      {{#asset "text" size="1"}}
+        <div class="asset-content">
+          {{{title}}}
+          {{{description}}}
+        </div>
+      {{/asset}}
+      {{#asset "text" size="2"}}
+        <div class="asset-content">
+          {{{title}}}
+          {{{description}}}
+        </div>
+      {{/asset}}
+      {{#asset "text" size="3"}}
+        <div class="asset-content">
+          {{{title}}}
+          {{{description}}}
+        </div>
+      {{/asset}}
+
+      {{#asset "imagegroup" size="1"}}
+        {{#if_many images}}
+          <div class="cycle-slideshow">
+            <div class="images">
+            {{#each images}}
+              <a href="{{{original_url}}}" rel="group" class="fancybox"><img alt="{{{title}}}" src="{{{resize original_url width=960 height=550}}}" width="960" height="550" /></a>
+            {{/each}}
+            </div>
+          </div>
+        {{else}}
+          {{#each images}}
+            <a href="{{{original_url}}}" rel="group" class="fancybox single-image"><img alt="{{{title}}}" src="{{{resize original_url width=960}}}" width="960" /></a>
+          {{/each}}
+        {{/if_many}}
+        <div class="asset-content">
+          {{{title}}}
+          {{{description}}}
+        </div?
+      {{/asset}}
+      {{#asset "imagegroup" size="2"}}
+        {{#if_many images}}
+          <div class="cycle-slideshow" data-cycle-slides="> div.image">
+            {{#each images}}
+              <div class="image">
+                <a href="{{{original_url}}}" class="fancybox"><img alt="{{{title}}}" src="{{{resize original_url width=470 height=260}}}" width="470" height="260" /></a>
+              </div>
+            {{/each}}
+            <div class="cycle-pager"></div>
+          </div>
+        {{else}}
+          {{#each images}}
+            <a href="{{{original_url}}}" class="fancybox single-image"><img alt="{{{title}}}" src="{{{resize original_url width=470}}}" width="470" /></a>
+          {{/each}}
+        {{/if_many}}
+        <div class="asset-content">
+          {{{title}}}
+          {{{description}}}
+        </div>
+      {{/asset}}
+      {{#asset "imagegroup" size="3"}}
+        {{#if_many images}}
+          <div class="cycle-slideshow" data-cycle-slides="> div.image">
+            {{#each images}}
+              <div class="image">
+                <a href="{{{original_url}}}" class="fancybox"><img alt="{{{title}}}" src="{{{resize original_url width=307 height=230}}}" width="307" height="230" /></a>
+              </div>
+            {{/each}}
+            <div class="cycle-pager"></div>
+          </div>
+        {{else}}
+          {{#each images}}
+            <a href="{{{original_url}}}" class="fancybox single-image"><img alt="{{{title}}}" src="{{{resize original_url width=307 height=230}}}" width="307" height="230" /></a>
+          {{/each}}
+        {{/if_many}}
+        <div class="asset-content">
+          {{{title}}}
+          {{{description}}}
+        </div>
+      {{/asset}}
+
+      {{#asset "videogroup" size="1"}}
+        {{{videoplayer videos width="960" height="550" resolution="large"}}}
+        <div class="asset-content">
+          {{{title}}}
+          {{{description}}}
+        </div>
+      {{/asset}}
+      {{#asset "videogroup" size="2"}}
+        {{{videoplayer videos width="470" height="260" resolution="medium"}}}
+        <div class="asset-content">
+          {{{title}}}
+          {{{description}}}
+        </div>
+      {{/asset}}
+      {{#asset "videogroup" size="3"}}
+        <div class="cycle-slideshow" data-cycle-slides="> div.video">
+            <div class="video">
+              {{{videoplayer videos width="307" height="230" resolution="small"}}}
+            </div>
+          <div class="cycle-pager"></div>
+        </div>
+      {{/asset}}
+
+      {{#asset "documentgroup" size="1"}}
+        <div class="asset-content">
+          {{{title}}}
+          {{{description}}}
+        </div>
+        <ul class="documents">
+        {{#each documents}}
+          <li><a href="{{{original_url}}}" data-tooltipsy-content="{{{source_file_name}}} ({{{format_file_size source_file_size}}})"><div class="title"><div class="extension extension-{{{extension}}}">{{{extension}}}</div>{{{title}}}</div></a></li>
+        {{/each}}
+        </ul>
+      {{/asset}}
+      {{#asset "documentgroup" size="2"}}
+        <div class="asset-content">
+          {{{title}}}
+          {{{description}}}
+        </div>
+        <ul class="documents">
+        {{#each documents}}
+          <li><a href="{{{original_url}}}" data-tooltipsy-content="{{{source_file_name}}} ({{{format_file_size source_file_size}}})"><div class="extension extension-{{{extension}}}">{{{extension}}}</div>{{{title}}}</a></li>
+        {{/each}}
+        </ul>
+      {{/asset}}
+      {{#asset "documentgroup" size="3"}}
+        <div class="asset-content">
+          {{{title}}}
+          {{{description}}}
+        </div>
+        <ul class="documents">
+        {{#each documents}}
+          <li><a href="{{{original_url}}}" data-tooltipsy-content="{{{source_file_name}}} ({{{format_file_size source_file_size}}})"><div class="extension extension-{{{extension}}}">{{{extension}}}</div>{{{title}}}</a></li>
+        {{/each}}
+        </ul>
+      {{/asset}}
+
+      {{#asset "embedgroup" size="1" width="960"}}
+        {{#each embeds}}
+          {{{html}}}
+        {{/each}}
+        <div class="asset-content">
+          {{{title}}}
+          {{{description}}}
+        </div>
+      {{/asset}}
+      {{#asset "embedgroup" size="2" width="470"}}
+        {{#each embeds}}
+          {{{html}}}
+        {{/each}}
+        <div class="asset-content">
+          {{{title}}}
+          {{{description}}}
+        </div>
+      {{/asset}}
+      {{#asset "embedgroup" size="3" width="307"}}
+        {{#each embeds}}
+          {{{html}}}
+        {{/each}}
+        <div class="asset-content">
+          {{{title}}}
+          {{{description}}}
+        </div>
+      {{/asset}}
+
+    {{/region}}
+
+    <div id="footer-separator"></div>
+    {{#region "columnizer" id="footer-region" max_cols="2" dummy_content="D-3,T-1|D-2|I-1,T-1"}}
+
+      {{#asset "text" size="1"}}
+        <div class="asset-content">
+          {{{title}}}
+          {{{description}}}
+        </div>
+      {{/asset}}
+      {{#asset "text" size="2"}}
+        <div class="asset-content">
+          {{{title}}}
+          {{{description}}}
+        </div>
+      {{/asset}}
+      {{#asset "text" size="3"}}
+        <div class="asset-content">
+          {{{title}}}
+          {{{description}}}
+        </div>
+      {{/asset}}
+
+      {{#asset "imagegroup" size="1"}}
+        {{#if_many images}}
+          <div class="slideshow">
+            <div class="images">
+            {{#each images}}
+              <a href="{{{original_url}}}" class="fancybox"><img alt="{{{title}}}" src="{{{resize original_url width=960 height=550}}}" width="960" height="550" /></a>
+            {{/each}}
+            </div>
+          </div>
+        {{else}}
+          {{#each images}}
+            <a href="{{{original_url}}}" class="fancybox single-image"><img alt="{{{title}}}" src="{{{resize original_url width=960}}}" width="960" /></a>
+          {{/each}}
+        {{/if_many}}
+        <div class="asset-content">
+          {{{title}}}
+          {{{description}}}
+        </div>
+      {{/asset}}
+      {{#asset "imagegroup" size="2"}}
+        {{#if_many images}}
+          <div class="slideshow">
+            <div class="images">
+            {{#each images}}
+              <a href="{{{original_url}}}" class="fancybox"><img alt="{{{title}}}" src="{{{resize original_url width=470 height=260}}}" width="470" height="260" /></a>
+            {{/each}}
+            </div>
+          </div>
+        {{else}}
+          {{#each images}}
+            <a href="{{{original_url}}}" class="fancybox single-image"><img alt="{{{title}}}" src="{{{resize original_url width=470}}}" width="470" /></a>
+          {{/each}}
+        {{/if_many}}
+        <div class="asset-content">
+          {{{title}}}
+          {{{description}}}
+        </div>
+      {{/asset}}
+
+      {{#asset "videogroup" size="1"}}
+        {{{videoplayer videos width="678" height="508" resolution="large"}}}
+        {{{description}}}
+      {{/asset}}
+      {{#asset "videogroup" size="2"}}
+        {{{title}}}
+        {{{videoplayer videos width="318" height="238" resolution="medium"}}}
+        <div class="asset-content">
+          {{{title}}}
+          {{{description}}}
+        </div>
+      {{/asset}}
+
+      {{#asset "documentgroup" size="1"}}
+        <ul class="documents">
+        {{#each documents}}
+          <li><a href="{{{original_url}}}" data-tooltipsy-content="{{{source_file_name}}} ({{{format_file_size source_file_size}}})"><div class="title"><div class="extension-wrapper"><div class="extension extension-{{{extension}}}">{{{extension}}}</div></div>{{{title}}}</div><div class="download">download</div></a></li>
+        {{/each}}
+        </ul>
+        <div class="asset-content">
+          {{{title}}}
+          {{{description}}}
+        </div>
+      {{/asset}}
+      {{#asset "documentgroup" size="2"}}
+        <ul class="documents">
+        {{#each documents}}
+          <li><a href="{{{original_url}}}" data-tooltipsy-content="{{{source_file_name}}} ({{{format_file_size source_file_size}}})"><div class="extension-wrapper"><div class="extension extension-{{{extension}}}">{{{extension}}}</div></div>{{{title}}}</a></li>
+        {{/each}}
+        </ul>
+        <div class="asset-content">
+          {{{title}}}
+          {{{description}}}
+        </div>
+      {{/asset}}
+
+      {{#asset "embedgroup" size="1"}}
+        {{#each embeds}}
+          {{{html}}}
+        {{/each}}
+        <div class="asset-content">
+          {{{title}}}
+          {{{description}}}
+        </div>
+      {{/asset}}
+      {{#asset "embedgroup" size="2"}}
+        {{#each embeds}}
+          {{{html}}}
+        {{/each}}
+        <div class="asset-content">
+          {{{title}}}
+          {{{description}}}
+        </div>
+      {{/asset}}
+
+    {{/region}}
+
+  </script>
+</body>
+</html>
