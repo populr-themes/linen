@@ -66,40 +66,14 @@
         </div?
       {{/asset}}
       {{#asset "imagegroup" size="2"}}
-        {{#if_many images}}
-          <div class="cycle-slideshow" data-cycle-slides="> div.image">
-            {{#each images}}
-              <div class="image">
-                <a href="{{{original_url}}}" class="fancybox"><img alt="{{{title}}}" src="{{{resize original_url width=470 height=260}}}" width="470" height="260" /></a>
-              </div>
-            {{/each}}
-            <div class="cycle-pager"></div>
-          </div>
-        {{else}}
-          {{#each images}}
-            <a href="{{{original_url}}}" class="fancybox single-image"><img alt="{{{title}}}" src="{{{resize original_url width=470}}}" width="470" /></a>
-          {{/each}}
-        {{/if_many}}
+        {{{imageslider images width=470 height=260 prevnext-enabled=false pager-enabled=true}}}
         <div class="asset-content">
           {{{title}}}
           {{{description}}}
         </div>
       {{/asset}}
       {{#asset "imagegroup" size="3"}}
-        {{#if_many images}}
-          <div class="cycle-slideshow" data-cycle-slides="> div.image">
-            {{#each images}}
-              <div class="image">
-                <a href="{{{original_url}}}" class="fancybox"><img alt="{{{title}}}" src="{{{resize original_url width=307 height=230}}}" width="307" height="230" /></a>
-              </div>
-            {{/each}}
-            <div class="cycle-pager"></div>
-          </div>
-        {{else}}
-          {{#each images}}
-            <a href="{{{original_url}}}" class="fancybox single-image"><img alt="{{{title}}}" src="{{{resize original_url width=307 height=230}}}" width="307" height="230" /></a>
-          {{/each}}
-        {{/if_many}}
+        {{{imageslider images width=307 height=230 prevnext-enabled=false pager-enabled=true}}}
         <div class="asset-content">
           {{{title}}}
           {{{description}}}
@@ -121,12 +95,7 @@
         </div>
       {{/asset}}
       {{#asset "videogroup" size="3"}}
-        <div class="cycle-slideshow" data-cycle-slides="> div.video">
-            <div class="video">
               {{{videoplayer videos width="307" height="230" resolution="small"}}}
-            </div>
-          <div class="cycle-pager"></div>
-        </div>
       {{/asset}}
 
       {{#asset "documentgroup" size="1"}}

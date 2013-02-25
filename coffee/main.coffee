@@ -1,3 +1,15 @@
+fixColumnHeights = ->
+  $(".columnizer-row").each ->
+    self = this
+    $(self).imagesLoaded ->
+      maxHeight = 0
+      $(self).find(".asset-inner").each ->
+        $(this).height "auto"
+        innerHeight = $(this).innerHeight()
+        maxHeight = innerHeight  if innerHeight > maxHeight
+
+      $(this).find(".asset-inner").innerHeight maxHeight
+
 $(document).on 'pop-initialized', ->
   # Instead of listening for the document.ready event, your theme
   # should listen for document.pop-initialized.
@@ -7,39 +19,16 @@ $(document).on 'pop-initialized', ->
   # pre-compile it, as Populr will not compile your
   # coffeescript to js code automatically.
 
-  $(".fancybox").eq(0).trigger 'click'
+  $('.asset-type-imagegroup').live 'initialize', ->
+    $(this).find('img').each ->
+      $(this).fancybox
+        type: 'image'
+        centerOnScroll: true
+        href: $(this).attr('src')
 
   $('.cycle-slideshow').cycle()
 
-  currentTallest = 0
-  currentRowStart = 0
-  rowDivs = new Array()
-  topPosition = 0
-
-  $(".asset").each ->
-    $el = $(this)
-    topPostion = $el.position().top
-    unless currentRowStart is topPostion
-
-      # we just came to a new row.  Set all the heights on the completed row
-      currentDiv = 0
-      while currentDiv < rowDivs.length
-        rowDivs[currentDiv].height currentTallest
-        currentDiv++
-
-      # set the variables for the new row
-      rowDivs.length = 0 # empty the array
-      currentRowStart = topPostion
-      currentTallest = $el.height()
-      rowDivs.push $el
-    else
-
-      # another div on the current row.  Add it to the list and check if it's taller
-      rowDivs.push $el
-      currentTallest = Math.max(currentTallest, $el.height())
-
-    # do the last row
-    currentDiv = 0
-    while currentDiv < rowDivs.length
-      rowDivs[currentDiv].height currentTallest
-      currentDiv++
+  if $("html").css("content") isnt "⁣\u2063"
+    $(".columnizer-row .asset").live "initialize", fixColumnHeights
+    $(".columnizer-row .asset").live "destroy", ->
+      $(this).find(".asset-inner").height "auto"
