@@ -3,42 +3,46 @@
   var fixColumnHeights;
 
   fixColumnHeights = function() {
-    return $(".columnizer-row").each(function() {
+    if ($("html").css("content") == "\u2063") {
+      $(".asset-inner").css("height", "");
+      return;
+    }
+    $(".columnizer-row").each(function() {
       var self;
       self = this;
-      return $(self).imagesLoaded(function() {
-        var maxHeight;
-        maxHeight = 0;
-        $(self).find(".asset-inner").each(function() {
-          var innerHeight;
-          $(this).height("auto");
-          innerHeight = $(this).innerHeight();
-          if (innerHeight > maxHeight) {
-            return maxHeight = innerHeight;
-          }
-        });
-        return $(this).find(".asset-inner").innerHeight(maxHeight);
+      $(self).imagesLoaded(function() {
+        setTimeout(function() {
+          var maxHeight;
+          maxHeight = 0;
+          $(self).find(".asset-inner").each(function() {
+            var innerHeight;
+            $(self).css("height", "");
+            innerHeight = $(self).innerHeight();
+            if (innerHeight > maxHeight) {
+              return maxHeight = innerHeight;
+            }
+          });
+          $(self).find(".asset-inner").css("height", maxHeight);
+        }, 0);
       });
     });
   };
 
   $(document).on('pop-initialized', function() {
     $('.asset-type-imagegroup').live('initialize', function() {
-      return $(this).find('img').each(function() {
-        return $(this).fancybox({
+      $(this).find('img').each(function() {
+        $(this).fancybox({
           type: 'image',
           centerOnScroll: true,
           href: $(this).attr('src')
         });
       });
     });
-    $('.cycle-slideshow').cycle();
-    if ($("html").css("content") !== "⁣\u2063") {
-      $(".columnizer-row .asset").live("initialize", fixColumnHeights);
-      return $(".columnizer-row .asset").live("destroy", function() {
-        return $(this).find(".asset-inner").height("auto");
-      });
-    }
+    $(window).on("resize", fixColumnHeights);
+    $(".columnizer-row .asset").live("initialize", fixColumnHeights);
+    $(".columnizer-row .asset").live("destroy", function() {
+      $(this).find(".asset-inner").height("auto");
+    });
   });
 
 }).call(this);

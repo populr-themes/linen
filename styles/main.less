@@ -7,13 +7,6 @@
 @import 'preboot';
 @import 'variables';
 
-html .themed {
-  &#pop {
-    // Add any styles you need on "#pop" here
-  }
-  // Add your selectors and styles here
-}
-
 @pop-width: 960px;
 @padding-width: 20px;
 //@content-width: @pop-width - 8px - (@padding-width * 2);
@@ -24,6 +17,42 @@ html .themed {
 
 #reset > .global-reset();
 
+#main-region, #footer-region { padding: 10px !important; }
+
+html .has-logo.has-title .themed {
+  #header {
+    .header-table {
+      display: table;
+      table-layout: fixed;
+      width: 100%;
+    }
+
+    .header-row {
+      display: table-row;
+    }
+    #pop-logo {
+      display: table-cell;
+      vertical-align: middle;
+    }
+    h1#pop-title {
+      border-top: 0;
+      padding: 0 0 0 30px;
+      display: table-cell;
+      vertical-align: middle;
+    }
+  }
+}
+
+html .has-logo .themed {
+  #header {
+    width: @pop-width - 35px;
+
+    #pop-logo {
+      padding: 5px 0;
+    }
+  }
+}
+
 body {
   border-top: 5px solid @accent-color;
   background: #333 url("@{base-url}/images/bg.jpg");
@@ -32,6 +61,12 @@ body {
   font-size: 14px;
   line-height: @baseline;
   color: #333;
+}
+
+#header {
+  margin: 0 auto;
+  padding: 15px 35px 15px;
+  width: @pop-width;
 }
 
 #pop {
@@ -57,43 +92,45 @@ a {
   color: @accent-color;
 }
 
-#pop-title {
+.title-color() when(luma(@background-color) > 75%) {
+  color: #555;
+  text-shadow: 2px 2px 2px rgba(0,0,0,0.3);
+}
+.title-color() when(luma(@background-color) =< 75%) {
   color: #fff;
+  text-shadow: 2px 2px 2px rgba(0,0,0,0.6);
+}
+
+#pop-logo {
+  padding: 10px 0;
+  width: 175px;
+}
+
+#pop-title {
+  .title-color();
   font-family: @headline-font-family;
   font-weight: 200;
   font-style: italic;
   font-size: 40px;
-  line-height: 80px;
+  line-height: 1.2em;
   margin: 0 auto;
-  text-shadow: 2px 2px 2px rgba(0,0,0,0.6);
-  width: @pop-width;
-}
-
-#main-region {
-  margin: 0 auto;
-  padding: 32px 0 50px 0;
 }
 
 .columnizer-row {
+  margin: @baseline * 3 auto 0;
   width: @pop-width;
-  margin: 0 auto;
-  margin-top: @baseline * 3;
   &:first-child {
     margin-top: 0;
   }
 }
 
-.col-width(@cols) {
-  width: (@content-width - (20px * (@cols - 1))) / @cols !important;
-}
-
 .columnizer-cols2 .columnizer-col {
-  .col-width(2);
+  width: 469px;
   margin-left: 20px !important;
 }
 
 .columnizer-cols3 .columnizer-col {
-  .col-width(3);
+  width: 306px;
   margin-left: 20px !important;
 }
 
@@ -105,8 +142,9 @@ a {
     padding: 35px;
   }
   h2.asset-title {
+    font-family: @headline-font-family;
     font-size: 1.5em;
-    font-weight: 400px;
+    font-weight: 400;
     line-height: 1.2em;
     margin-bottom: 0.5em;
   }
@@ -118,6 +156,7 @@ a {
 @sprite-height: 42px;
 @filetypes: "['file','zip','xls','wps','wpd','wmv','wma','wav','vob','vcd','txt','ttf','torrent','tif','tgz','swf','ss','sql','sitx','sit','ses','sea','rtf','rmvb','rm','rar','ram','qxd','qbw','qbb','pub','ptb','pst','psd','ps','ppt','pps','png','pdf','ogg','msi','mpg','mpeg','mp4','mp3','mp2','mov','mid','mdb','mcd','m4v','m4p','m4b','m4a','log','lnk','jpg','jpeg','jar','iso','indd','ifo','html','htm','hqx','gz','gif','flv','fla','exe','eps','eml','dwg','dvf','dss','doc','dmg','dll','divx','dat','chm','cdr','cdl','cda','cbr','cab','bup','bmp','bin','bat','avi','asx','asf','amr','aiff','aif','ai','ace','7z','3gp']";
 @filetypes-length: ~`eval(@{filetypes}).length`;
+
 .file-extensions(@index) when (@index > 0) {
   (~".extension-`eval(@{filetypes})[@{index} - 1]`") {
     background-position: ~`(((@{index} - @{filetypes-length}) % @{sprite-cols}) * parseInt("@{sprite-width}", 10)) + "px"` ~`((Math.ceil((@{index} - @{filetypes-length}) / @{sprite-cols})) * parseInt("@{sprite-height}", 10)) + "px"`;
@@ -133,33 +172,32 @@ a {
 }
 
 .columnizer-col1 .documents > li {
+  height: 101px;
   .icon_width(960px, 6);
-  &:nth-child(6n) {
-    margin-right: 20px;
-  }
 }
 
 .columnizer-col2 .documents > li {
+  height: 95px;
   .icon_width(470px, 3);
-  &:nth-child(3n) {
-    margin-right: 20px;
-  }
 }
 
 .columnizer-col3 .documents > li {
+  height: 95px;
   .icon_width(305px, 2);
-  &:nth-child(2n) {
-    margin-right: 20px;
-  }
 }
 
 .asset-type-documentgroup {
   .asset-content {
     padding-bottom: 0;
   }
+  .description {
+    padding-bottom: 20px;
+  }
 }
 
+
 .documents {
+  padding-bottom: 35px;
   .clearfix;
   > li {
     float: left;
@@ -168,6 +206,9 @@ a {
     // &:first-child {
     //   margin-left: 20px;
     // }
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+    overflow: hidden;
     a {
       color: @accent-color;
       position: relative;
@@ -179,13 +220,32 @@ a {
     .title {
       padding-top: 8px;
     }
+
     .extension {
-      background: transparent url("@{base-url}/images/file-icons.png") no-repeat center top;
+      background: transparent url("@{base-url}/images/file-icons.png") no-repeat;
       .square(33px);
       margin: 0 auto;
       text-indent: -9999px;
+
+      @index: 1;
+      background-position: ~`(((@{index} - @{filetypes-length}) % @{sprite-cols}) * parseInt("@{sprite-width}", 10)) + "px"` ~`((Math.ceil((@{index} - @{filetypes-length}) / @{sprite-cols})) * parseInt("@{sprite-height}", 10)) + "px"`;
     }
-  .file-extensions(100);  //we should be able to just reference filetypes-length, but there is a bug in less
+    .file-extensions(100);  //we should be able to just reference filetypes-length, but there is a bug in less
+
+    .extension-pptx {
+      @index: 36;
+      background-position: ~`(((@{index} - @{filetypes-length}) % @{sprite-cols}) * parseInt("@{sprite-width}", 10)) + "px"` ~`((Math.ceil((@{index} - @{filetypes-length}) / @{sprite-cols})) * parseInt("@{sprite-height}", 10)) + "px"`;
+    }
+    .extension-docx {
+      @index: 76;
+      background-position: ~`(((@{index} - @{filetypes-length}) % @{sprite-cols}) * parseInt("@{sprite-width}", 10)) + "px"` ~`((Math.ceil((@{index} - @{filetypes-length}) / @{sprite-cols})) * parseInt("@{sprite-height}", 10)) + "px"`;
+    }
+    .extension-xlsx {
+      @index: 3;
+      background-position: ~`(((@{index} - @{filetypes-length}) % @{sprite-cols}) * parseInt("@{sprite-width}", 10)) + "px"` ~`((Math.ceil((@{index} - @{filetypes-length}) / @{sprite-cols})) * parseInt("@{sprite-height}", 10)) + "px"`;
+    }
+
+
   }
 }
 
@@ -215,5 +275,87 @@ a {
     bottom: -10px;
     right: 50%;
     z-index: -1;
+  }
+}
+
+#populr > #image-slider-themes > .basic();
+
+.populr-image-slider .slideshow {
+  overflow: visible;
+
+  .cycle-pager {
+    position: absolute;
+    bottom: -25px;
+    width: 100%;
+    font-family: Verdana, sans-serif;
+    span.cycle-pager-active {
+      cursor: default;
+    }
+  }
+
+}
+
+@media screen and (max-width: 960px)  {
+  #populr > .mobile-reset();
+
+  .asset-type-imagegroup .image-container, .asset-type-imagegroup .asset-inner:before, .asset-type-imagegroup .asset-inner:after { width: inherit!important; height: inherit!important; .box-shadow(0 0px 0px rgba(0,0,0,0))!important; background: transparent!important; }
+  .asset-type-imagegroup .image-title { width: 100% !important; }
+  .asset-type-imagegroup .image-container img { min-width: 100% !important;}
+
+  #header, .columnizer-row { width: auto !important; }
+  html .themed #header h1#pop-title {
+    padding: 0 15px;
+  }
+
+  html .themed .columnizer-col1 .asset-type-imagegroup .image-text {width: 100%;}
+  html .themed .columnizer-col1 .asset-type-imagegroup .image-inner {margin: 0 auto !important; float: none !important;;}
+}
+
+@media screen and (min-width: 480px) and (max-width: 960px) {
+  #pop-logo {
+    padding: 5px 0;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  html .has-logo.has-title .themed {
+    #header {
+      .title-area-table {
+        display: block;
+      }
+
+      .title-area-row {
+        display: block;
+      }
+
+      #pop-logo {
+        padding: 5px 0;
+        display: block;
+        margin: auto;
+      }
+
+      h1#pop-title {
+        display: block;
+        padding: 10px 0;
+      }
+    }
+  }
+
+  html .has-logo .themed {
+    #header {
+      #pop-logo {
+        padding: 5px 0;
+        display: block;
+        margin: auto;
+      }
+    }
+  }
+
+  h1#pop-title {
+    font-size: 40px !important;
+    text-align: center !important;
+    .text-align-right, .text-align-left  {
+      text-align: center !important;
+    }
   }
 }
