@@ -15,11 +15,11 @@
           var maxHeight;
           maxHeight = 0;
           $(self).find(".asset-inner").each(function() {
-            var innerHeight;
+            var height;
             $(self).css("height", "");
-            innerHeight = $(self).innerHeight();
-            if (innerHeight > maxHeight) {
-              return maxHeight = innerHeight;
+            height = $(self).height();
+            if (height > maxHeight) {
+              return maxHeight = height;
             }
           });
           $(self).find(".asset-inner").css("height", maxHeight);

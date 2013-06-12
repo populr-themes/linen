@@ -6,6 +6,7 @@
 
 @import 'preboot';
 @import 'variables';
+@import '//fonts.googleapis.com/css?family=Titillium+Web:400,300,400italic,300italic,600,600italic,200italic,200&.css';
 
 @pop-width: 960px;
 @padding-width: 20px;
@@ -14,10 +15,11 @@
 @half-moon-height: 67px;
 @baseline: 20px;
 @shadow-color: desaturate(darken(@accent-color, 35%), 20%);
+@populr-theme-version: 1;
 
 #reset > .global-reset();
 
-#main-region, #footer-region { padding: 10px !important; }
+#main-region, #footer-region { padding: 0 10px }
 
 html .has-logo.has-title .themed {
   #header {
@@ -84,8 +86,6 @@ body {
 
 #footer-region {
   background: #2b2a2a;
-  padding-top: 50px;
-  padding-bottom: 20px;
 }
 
 a {
@@ -116,22 +116,39 @@ a {
   margin: 0 auto;
 }
 
+/* clearfix */
+.columnizer-row:after {display: block; visibility: hidden; height: 0; clear: both; content: ".";} .columnizer-row {*zoom: 1;}
+
+
+
 .columnizer-row {
-  margin: @baseline * 3 auto 0;
+  padding: 0 0 40px;
+  margin: 0 auto;
   width: @pop-width;
-  &:first-child {
-    margin-top: 0;
+  #footer-region &:first-child {
+    padding-top: 40px;
   }
+}
+
+.columnizer-col, .columnizer-col2, .columnizer-col3 {
+  float:left;
+}
+.columnizer-col{
+  width:100%;
 }
 
 .columnizer-cols2 .columnizer-col {
   width: 469px;
-  margin-left: 20px !important;
+  margin-left: 20px;
 }
 
 .columnizer-cols3 .columnizer-col {
   width: 306px;
-  margin-left: 20px !important;
+  margin-left: 20px;
+}
+
+.columnizer-row .first, .columnizer-row .columnizer-col:first-child{
+  margin-left: 0;
 }
 
 .asset {
@@ -307,8 +324,30 @@ a {
     padding: 0 15px;
   }
 
-  html .themed .columnizer-col1 .asset-type-imagegroup .image-text {width: 100%;}
-  html .themed .columnizer-col1 .asset-type-imagegroup .image-inner {margin: 0 auto !important; float: none !important;;}
+
+  .columnizer-row {
+    padding: 0;
+    #footer-region &:first-child {
+      padding-top: 21px;
+    }
+    .columnizer-col {
+      padding-bottom: 21px;
+    }
+  }
+
+
+
+  html .themed .columnizer-col1 .asset-type-imagegroup .image-text {
+    width: 100%;
+  }
+  html .themed .columnizer-col1 .asset-type-imagegroup .image-inner {
+    margin: 0 auto;
+    float: none;
+  }
+  .columnizer-cols1 .columnizer-col, .columnizer-cols2 .columnizer-col, .columnizer-cols3 .columnizer-col {
+    width: 100%;
+    margin-left: 0;
+  }
 }
 
 @media screen and (min-width: 480px) and (max-width: 960px) {
