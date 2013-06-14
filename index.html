@@ -6,10 +6,12 @@
   <title>Linen</title>
 
   <meta itemprop="palette" content="palette-default" title="Default" data-preview="#ffffff,#222222">
+  <meta itemprop="palette" content="palette-custom" title="Custom" data-preview="custom">
+  <meta itemprop="palette" content="palette-transparent" title="Transparent" data-preview="transparent">
 
   <!-- Add any styles your theme requires here -->
   <link rel="stylesheet/less" type="text/css" href="/styles/main.less">
-  <meta itemprop="defaultBackground" content="/images/background.jpg" data-width="1800" data-height="1800" data-position="c" data-style="fill" data-color="#665b42">
+  <meta itemprop="defaultBackground" content="/images/bg.jpg" data-position="c" data-style="tile" data-color="#2b2a2a">
   <!-- This script loads the Populr theming engine. Populr will automatically
        remove it at runtime. -->
   <script src="http://populr.me/assets/developers/themer.js"></script>
@@ -21,6 +23,7 @@
   <!-- Put your theme's inside this script tag. The script tag will
        prevent issues with quote escaping and invalid markup. -->
   <script id="theme" type="text/x-handlebars-template">
+    <div id="top-border"></div>
     <div id="header">
       <div class="header-table">
         <div class="header-row">
@@ -53,24 +56,30 @@
 
       {{#asset "imagegroup" size="1"}}
         {{{imageslider images width=960 height=550 prevnext-enabled=false pager-enabled=true}}}
+        {{#if_or title_visible description_visible}}
         <div class="asset-content">
           {{{title}}}
           {{{description}}}
-        </div?
+        </div>
+        {{/if_or}}
       {{/asset}}
       {{#asset "imagegroup" size="2"}}
         {{{imageslider images width=470 height=260 prevnext-enabled=false pager-enabled=true}}}
+        {{#if_or title_visible description_visible}}
         <div class="asset-content">
           {{{title}}}
           {{{description}}}
         </div>
+        {{/if_or}}
       {{/asset}}
       {{#asset "imagegroup" size="3"}}
         {{{imageslider images width=307 height=230 prevnext-enabled=false pager-enabled=true}}}
+        {{#if_or title_visible description_visible}}
         <div class="asset-content">
           {{{title}}}
           {{{description}}}
         </div>
+        {{/if_or}}
       {{/asset}}
 
       {{#asset "documentgroup" size="1"}}
@@ -161,24 +170,30 @@
 
       {{#asset "imagegroup" size="1"}}
         {{{imageslider images width=960 height=550 prevnext-enabled=false pager-enabled=true}}}
+        {{#if_or title_visible description_visible}}
         <div class="asset-content">
           {{{title}}}
           {{{description}}}
-        </div?
+        </div>
+        {{/if_or}}
       {{/asset}}
       {{#asset "imagegroup" size="2"}}
         {{{imageslider images width=470 height=260 prevnext-enabled=false pager-enabled=true}}}
+        {{#if_or title_visible description_visible}}
         <div class="asset-content">
           {{{title}}}
           {{{description}}}
         </div>
+        {{/if_or}}
       {{/asset}}
       {{#asset "imagegroup" size="3"}}
         {{{imageslider images width=307 height=230 prevnext-enabled=false pager-enabled=true}}}
+        {{#if_or title_visible description_visible}}
         <div class="asset-content">
           {{{title}}}
           {{{description}}}
         </div>
+        {{/if_or}}
       {{/asset}}
 
       {{#asset "documentgroup" size="1"}}

@@ -14,7 +14,7 @@
 @content-width: 960px;
 @half-moon-height: 67px;
 @baseline: 20px;
-@shadow-color: desaturate(darken(@accent-color, 35%), 20%);
+@shadow-color: desaturate(darken(@custom-color, 35%), 20%);
 @populr-theme-version: 1;
 
 #reset > .global-reset();
@@ -56,24 +56,24 @@ html .has-logo .themed {
 }
 
 body {
-  border-top: 5px solid @accent-color;
-  background: #333 url("@{base-url}/images/bg.jpg");
   font-family: 'Titillium Web', Verdana, sans-serif;
   font-weight: 300px;
-  font-size: 14px;
+  font-size: 15px;
   line-height: @baseline;
-  color: #333;
+  .text-color();
+}
+
+#top-border {
+  background-color: @custom-color;
+  position: absolute;
+  height: 5px;
+  width: 100%;
 }
 
 #header {
   margin: 0 auto;
   padding: 15px 35px 15px;
   width: @pop-width;
-}
-
-#pop {
-  margin: 30px auto 0 auto;
-  overflow: visible;
 }
 
 #main-content {
@@ -85,20 +85,20 @@ body {
 }
 
 #footer-region {
-  background: #2b2a2a;
+  background: @footer-background-color;
 }
 
 a {
-  color: @accent-color;
+  color: hsl(hue(@custom-color), saturation(@custom-color), lightness(#777));
 }
 
 .title-color() when(luma(@background-color) > 75%) {
   color: #555;
-  text-shadow: 2px 2px 2px rgba(0,0,0,0.3);
+  text-shadow: 0px 1px 1px rgba(0,0,0,0.3);
 }
 .title-color() when(luma(@background-color) =< 75%) {
   color: #fff;
-  text-shadow: 2px 2px 2px rgba(0,0,0,0.6);
+  text-shadow: 0px 1px 1px rgba(0,0,0,0.6);
 }
 
 #pop-logo {
@@ -152,8 +152,7 @@ a {
 }
 
 .asset {
-  background-color: #fff;
-  .box-shadow(0 0 5px rgba(0,0,0,0.6));
+  .asset-background();
 
   .asset-content {
     padding: 35px;
@@ -189,17 +188,17 @@ a {
 }
 
 .columnizer-col1 .documents > li {
-  height: 101px;
+  height: 92px;
   .icon_width(960px, 6);
 }
 
 .columnizer-col2 .documents > li {
-  height: 95px;
+  height: 92px;
   .icon_width(470px, 3);
 }
 
 .columnizer-col3 .documents > li {
-  height: 95px;
+  height: 92px;
   .icon_width(305px, 2);
 }
 
@@ -218,7 +217,7 @@ a {
   .clearfix;
   > li {
     float: left;
-    margin-left: 20px;
+    margin: 5px 0 5px 20px;
     text-align: center;
     // &:first-child {
     //   margin-left: 20px;
@@ -227,47 +226,31 @@ a {
     text-overflow: ellipsis;
     overflow: hidden;
     a {
-      color: @accent-color;
+      .text-color();
+      font-size: 14px;
       position: relative;
       display: block;
-      padding: 20px 0 20px 0;
       text-decoration: none;
       .clearfix;
     }
-    .title {
-      padding-top: 8px;
-    }
 
     .extension {
-      background: transparent url("@{base-url}/images/file-icons.png") no-repeat;
-      .square(33px);
+      .extension-color();
+      width: 55px;
+      height: 30px;
       margin: 0 auto;
-      text-indent: -9999px;
-
-      @index: 1;
-      background-position: ~`(((@{index} - @{filetypes-length}) % @{sprite-cols}) * parseInt("@{sprite-width}", 10)) + "px"` ~`((Math.ceil((@{index} - @{filetypes-length}) / @{sprite-cols})) * parseInt("@{sprite-height}", 10)) + "px"`;
+      text-align: center;
+      padding-top: 18px;
+      padding-left: 4px;
+      font-size: 18px;
+      font-weight: bold;
     }
-    .file-extensions(100);  //we should be able to just reference filetypes-length, but there is a bug in less
-
-    .extension-pptx {
-      @index: 36;
-      background-position: ~`(((@{index} - @{filetypes-length}) % @{sprite-cols}) * parseInt("@{sprite-width}", 10)) + "px"` ~`((Math.ceil((@{index} - @{filetypes-length}) / @{sprite-cols})) * parseInt("@{sprite-height}", 10)) + "px"`;
-    }
-    .extension-docx {
-      @index: 76;
-      background-position: ~`(((@{index} - @{filetypes-length}) % @{sprite-cols}) * parseInt("@{sprite-width}", 10)) + "px"` ~`((Math.ceil((@{index} - @{filetypes-length}) / @{sprite-cols})) * parseInt("@{sprite-height}", 10)) + "px"`;
-    }
-    .extension-xlsx {
-      @index: 3;
-      background-position: ~`(((@{index} - @{filetypes-length}) % @{sprite-cols}) * parseInt("@{sprite-width}", 10)) + "px"` ~`((Math.ceil((@{index} - @{filetypes-length}) / @{sprite-cols})) * parseInt("@{sprite-height}", 10)) + "px"`;
-    }
-
 
   }
 }
 
 .documents .download, .tooltipsy {
-  background: @accent-color;
+  background: @custom-color;
   color: #fff;
   .box-shadow(2px 3px 0px @shadow-color);
   padding: 5px;
@@ -301,6 +284,7 @@ a {
   overflow: visible;
 
   .cycle-pager {
+    color: @custom-color;
     position: absolute;
     bottom: -25px;
     width: 100%;
@@ -395,6 +379,16 @@ a {
     text-align: center !important;
     .text-align-right, .text-align-left  {
       text-align: center !important;
+    }
+  }
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+  .documents {
+    > li {
+      .extension {
+        background: transparent url("@{base-url}/images/document_icon@2x.png") no-repeat;
+      }
     }
   }
 }
