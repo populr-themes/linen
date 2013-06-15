@@ -1,6 +1,16 @@
 .text-color() {
   color: #333;
 }
+.footer-text-color() {
+  .text-color();
+}
+
+.link-color() {
+  color: hsl(hue(@custom-color), saturation(@custom-color), lightness(#777));
+}
+.footer-link-color() {
+  .link-color();
+}
 
 .asset-background() {
   background-color: #fff;
@@ -10,4 +20,8 @@
 .extension-color() {
   color: @custom-color;
   background: transparent url("@{base-url}/images/document_icon.png") no-repeat;
+}
+
+.footer-extension-color() {
+  .extension-color();
 }

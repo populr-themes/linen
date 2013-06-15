@@ -1,13 +1,41 @@
 
 @custom-color: #777;
 
+.text-color-dark-bg() {
+  color: #fff;
+  text-shadow: 0px 1px 1px rgba(0,0,0,0.6);
+}
+
 .text-color() when(luma(@background-color) > 75%) {
   color: #555;
   text-shadow: 0px 1px 1px rgba(0,0,0,0.3);
 }
 .text-color() when(luma(@background-color) =< 75%) {
-  color: #fff;
-  text-shadow: 0px 1px 1px rgba(0,0,0,0.6);
+  .text-color-dark-bg();
+}
+.footer-text-color() {
+  .text-color-dark-bg();
+}
+
+
+.link-color-dark-bg() {
+  color: hsl(hue(@custom-color), saturation(@custom-color), lightness(#aaa));
+}
+
+.link-color() when(luma(@background-color) > 75%) {
+  color: hsl(hue(@custom-color), saturation(@custom-color), lightness(#777));
+}
+.link-color() when(luma(@background-color) =< 75%) {
+  .link-color-dark-bg();
+}
+.footer-link-color() {
+  .link-color-dark-bg();
+}
+
+.extension-color-dark-bg() {
+  color: #ccc;
+  text-shadow: none;
+  background: transparent url("@{base-url}/images/document_icon_light.png") no-repeat;
 }
 
 .extension-color() when(luma(@background-color) > 75%) {
@@ -16,9 +44,10 @@
   background: transparent url("@{base-url}/images/document_icon.png") no-repeat;
 }
 .extension-color() when(luma(@background-color) =< 75%) {
-  color: #ccc;
-  text-shadow: none;
-  background: transparent url("@{base-url}/images/document_icon_light.png") no-repeat;
+  .extension-color-dark-bg();
+}
+.footer-extension-color() {
+  .extension-color-dark-bg();
 }
 
 

@@ -83,10 +83,12 @@
       {{/asset}}
 
       {{#asset "documentgroup" size="1"}}
+        {{#if_or title_visible description_visible}}
         <div class="asset-content">
           {{{title}}}
           {{{description}}}
         </div>
+        {{/if_or}}
         <ul class="documents">
         {{#each documents}}
           <li><a href="{{{original_url}}}" data-tooltipsy-content="{{{source_file_name}}} ({{{format_file_size source_file_size}}})"><div class="title"><div class="extension extension-{{{extension}}}">{{{extension}}}</div>{{{title}}}</div></a></li>
@@ -94,10 +96,12 @@
         </ul>
       {{/asset}}
       {{#asset "documentgroup" size="2"}}
+        {{#if_or title_visible description_visible}}
         <div class="asset-content">
           {{{title}}}
           {{{description}}}
         </div>
+        {{/if_or}}
         <ul class="documents">
         {{#each documents}}
           <li><a href="{{{original_url}}}" data-tooltipsy-content="{{{source_file_name}}} ({{{format_file_size source_file_size}}})"><div class="extension extension-{{{extension}}}">{{{extension}}}</div>{{{title}}}</a></li>
@@ -105,10 +109,12 @@
         </ul>
       {{/asset}}
       {{#asset "documentgroup" size="3"}}
+        {{#if_or title_visible description_visible}}
         <div class="asset-content">
           {{{title}}}
           {{{description}}}
         </div>
+        {{/if_or}}
         <ul class="documents">
         {{#each documents}}
           <li><a href="{{{original_url}}}" data-tooltipsy-content="{{{source_file_name}}} ({{{format_file_size source_file_size}}})"><div class="extension extension-{{{extension}}}">{{{extension}}}</div>{{{title}}}</a></li>
@@ -120,28 +126,34 @@
         {{#each embeds}}
           {{{html}}}
         {{/each}}
+        {{#if_or title_visible description_visible}}
         <div class="asset-content">
           {{{title}}}
           {{{description}}}
         </div>
+        {{/if_or}}
       {{/asset}}
       {{#asset "embedgroup" size="2" width="470"}}
         {{#each embeds}}
           {{{html}}}
         {{/each}}
+        {{#if_or title_visible description_visible}}
         <div class="asset-content">
           {{{title}}}
           {{{description}}}
         </div>
+        {{/if_or}}
       {{/asset}}
       {{#asset "embedgroup" size="3" width="307"}}
         {{#each embeds}}
           {{{html}}}
         {{/each}}
+        {{#if_or title_visible description_visible}}
         <div class="asset-content">
           {{{title}}}
           {{{description}}}
         </div>
+        {{/if_or}}
       {{/asset}}
 
     {{/region}}
@@ -197,10 +209,12 @@
       {{/asset}}
 
       {{#asset "documentgroup" size="1"}}
+        {{#if_or title_visible description_visible}}
         <div class="asset-content">
           {{{title}}}
           {{{description}}}
         </div>
+        {{/if_or}}
         <ul class="documents">
         {{#each documents}}
           <li><a href="{{{original_url}}}" data-tooltipsy-content="{{{source_file_name}}} ({{{format_file_size source_file_size}}})"><div class="title"><div class="extension extension-{{{extension}}}">{{{extension}}}</div>{{{title}}}</div></a></li>
@@ -208,10 +222,12 @@
         </ul>
       {{/asset}}
       {{#asset "documentgroup" size="2"}}
+        {{#if_or title_visible description_visible}}
         <div class="asset-content">
           {{{title}}}
           {{{description}}}
         </div>
+        {{/if_or}}
         <ul class="documents">
         {{#each documents}}
           <li><a href="{{{original_url}}}" data-tooltipsy-content="{{{source_file_name}}} ({{{format_file_size source_file_size}}})"><div class="extension extension-{{{extension}}}">{{{extension}}}</div>{{{title}}}</a></li>
@@ -219,10 +235,12 @@
         </ul>
       {{/asset}}
       {{#asset "documentgroup" size="3"}}
+        {{#if_or title_visible description_visible}}
         <div class="asset-content">
           {{{title}}}
           {{{description}}}
         </div>
+        {{/if_or}}
         <ul class="documents">
         {{#each documents}}
           <li><a href="{{{original_url}}}" data-tooltipsy-content="{{{source_file_name}}} ({{{format_file_size source_file_size}}})"><div class="extension extension-{{{extension}}}">{{{extension}}}</div>{{{title}}}</a></li>
@@ -234,28 +252,34 @@
         {{#each embeds}}
           {{{html}}}
         {{/each}}
+        {{#if_or title_visible description_visible}}
         <div class="asset-content">
           {{{title}}}
           {{{description}}}
         </div>
+        {{/if_or}}
       {{/asset}}
       {{#asset "embedgroup" size="2" width="470"}}
         {{#each embeds}}
           {{{html}}}
         {{/each}}
+        {{#if_or title_visible description_visible}}
         <div class="asset-content">
           {{{title}}}
           {{{description}}}
         </div>
+        {{/if_or}}
       {{/asset}}
       {{#asset "embedgroup" size="3" width="307"}}
         {{#each embeds}}
           {{{html}}}
         {{/each}}
+        {{#if_or title_visible description_visible}}
         <div class="asset-content">
           {{{title}}}
           {{{description}}}
         </div>
+        {{/if_or}}
       {{/asset}}
 
     {{/region}}

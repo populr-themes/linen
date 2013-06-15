@@ -86,10 +86,15 @@ body {
 
 #footer-region {
   background: @footer-background-color;
+  .footer-text-color();
+
+  a, a:hover, a:visited, a:active {
+    .footer-link-color();
+  }
 }
 
-a {
-  color: hsl(hue(@custom-color), saturation(@custom-color), lightness(#777));
+a, a:hover, a:visited, a:active {
+  .link-color();
 }
 
 .title-color() when(luma(@background-color) > 75%) {
@@ -206,18 +211,15 @@ a {
   .asset-content {
     padding-bottom: 0;
   }
-  .description {
-    padding-bottom: 20px;
-  }
 }
 
 
 .documents {
-  padding-bottom: 35px;
+  padding: 25px 0 35px;
   .clearfix;
   > li {
     float: left;
-    margin: 5px 0 5px 20px;
+    margin: 10px 0 0 20px;
     text-align: center;
     // &:first-child {
     //   margin-left: 20px;
@@ -236,6 +238,9 @@ a {
 
     .extension {
       .extension-color();
+      #footer-region & {
+        .footer-extension-color();
+      }
       width: 55px;
       height: 30px;
       margin: 0 auto;

@@ -3,45 +3,23 @@
   var fixColumnHeights;
 
   fixColumnHeights = function() {
-    if ($("html").css("content") == "\u2063") {
-      $(".asset-inner").css("height", "");
-      return;
-    }
-    $(".columnizer-row").each(function() {
-      var self;
-      self = this;
-      $(self).imagesLoaded(function() {
-        setTimeout(function() {
-          var maxHeight;
-          maxHeight = 0;
-          $(self).find(".asset-inner").each(function() {
-            var height;
-            $(self).css("height", "");
-            height = $(self).height();
-            if (height > maxHeight) {
-              return maxHeight = height;
-            }
-          });
-          $(self).find(".asset-inner").css("height", maxHeight);
-        }, 0);
+    if ($('html').css('content') == "\u2063") {
+      $('.asset').css('height', '');
+
+    } else {
+      $('#pop').imagesLoaded(function() {
+        $('.columnizer-row').each(function(idx, el) {
+          $(this).find('.asset').height($(this).height());
+        });
       });
-    });
+    }
   };
 
   $(document).on('pop-initialized', function() {
-    $('.asset-type-imagegroup').live('initialize', function() {
-      $(this).find('img').each(function() {
-        $(this).fancybox({
-          type: 'image',
-          centerOnScroll: true,
-          href: $(this).attr('src')
-        });
-      });
-    });
-    $(window).on("resize", fixColumnHeights);
-    $(".columnizer-row .asset").live("initialize", fixColumnHeights);
-    $(".columnizer-row .asset").live("destroy", function() {
-      $(this).find(".asset-inner").height("auto");
+    $(window).on('resize', _.throttle(fixColumnHeights));
+    $('.columnizer-row .asset').live('initialize', _.throttle(fixColumnHeights));
+    $('.columnizer-row .asset').live('destroy', function() {
+      $(this).find('.asset').css('height', '');
     });
   });
 
