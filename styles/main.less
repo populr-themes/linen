@@ -37,7 +37,6 @@ html .has-logo.has-title .themed {
       vertical-align: middle;
     }
     h1#pop-title {
-      border-top: 0;
       padding: 0 0 0 30px;
       display: table-cell;
       vertical-align: middle;
@@ -66,6 +65,8 @@ body {
 #top-border {
   background-color: @custom-color;
   position: absolute;
+  top: 0;
+  left: 0;
   height: 5px;
   width: 100%;
 }
@@ -227,6 +228,7 @@ a, a:hover, a:visited, a:active {
     word-wrap: break-word;
     text-overflow: ellipsis;
     overflow: hidden;
+    position: relative;
     a {
       .text-color();
       font-size: 14px;
@@ -393,6 +395,40 @@ a, a:hover, a:visited, a:active {
     > li {
       .extension {
         background: transparent url("@{base-url}/images/document_icon@2x.png") no-repeat;
+      }
+    }
+  }
+}
+
+
+
+
+
+html.ie7 {
+  .assets-resized {
+    .asset {
+      height: 0.01%;
+    }
+  }
+
+  .has-logo.has-title .themed {
+    #header {
+      .header-table {
+        display: block;
+        width: 100%;
+      }
+
+      .header-row {
+        display: block;
+      }
+      #pop-logo {
+        display: block;
+        float: left;
+      }
+      h1#pop-title {
+        padding-top: 30px;
+        margin-left: 180px;
+        display: block;
       }
     }
   }
